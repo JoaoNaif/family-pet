@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Size {
+  big
+  small
+  medium
+}
+
+model Pet {
+  id          String   @id @default(uuid())
+  name        String
+  breed       String
+  description String?
+  src         String   @default("https://static.vecteezy.com/system/resources/thumbnails/014/569/555/small_2x/dog-and-cat-paws-with-sharp-claws-cute-animal-footprints-png.png")
+  size        Size     @default(medium)
+  created_at  DateTime @default(now())
+
+  org    Org    @relation(fields: [org_id], references: [id])
+  org_id String
+
+  @@map("pets")
+}
+
+model Org {
+  id            String @id @default(uuid())
+  email         String @unique
+  password_hash String
+  phone         String
+  name          String
+
+  city       String
+  address    String
+  state      String
+  created_at DateTime @default(now())
+
+  latitude  Decimal
+  longitude Decimal
+
+  pet Pet[]
+
+  @@map("orgs")
+}

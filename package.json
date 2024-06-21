@@ -1,0 +1,38 @@
+{
+  "name": "api-pet",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build",
+    "test": "vitest run --dir src/use-case",
+    "test:watch": "vitest --dir src/use-case",
+    "test:e2e": "vitest run --dir src/http"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@rocketseat/eslint-config": "2.2.2",
+    "@types/bcryptjs": "2.4.6",
+    "@types/node": "20.14.2",
+    "@types/supertest": "6.0.2",
+    "eslint": "8.57.0",
+    "prisma": "5.15.0",
+    "supertest": "7.0.0",
+    "tsup": "8.1.0",
+    "tsx": "4.15.2",
+    "typescript": "5.4.5",
+    "vite-tsconfig-paths": "4.3.2",
+    "vitest": "1.6.0"
+  },
+  "dependencies": {
+    "@prisma/client": "5.15.0",
+    "bcryptjs": "2.4.3",
+    "dotenv": "16.4.5",
+    "fastify": "4.27.0",
+    "zod": "3.23.8"
+  }
+}
