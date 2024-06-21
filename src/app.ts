@@ -3,8 +3,16 @@ import { orgsRoutes } from './http/controller/orgs/routes'
 import { ZodError } from 'zod'
 import { env } from './env'
 import { petsRoutes } from './http/controller/pets/routes'
+import fastifyCors from '@fastify/cors'
 
 export const app = fastify()
+
+app.register(fastifyCors, {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+})
 
 app.register(orgsRoutes)
 app.register(petsRoutes)
